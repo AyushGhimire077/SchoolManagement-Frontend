@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+@theme {
+    --font-sans: "Inter", "sans-serif";
+    --font-serif: "Merriweather", "serif";
+    --font-mono: "Fira Code", "monospace";
+
+    --color-primary: #232D3F;
+    --color-secondary: #0F0F0F;
+    --color-accent: #4A90E2;
+}
+
+/* typewriter.css */
+.type-writer {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    white-space: nowrap;
+    animation: blink 1.1s step-end infinite;
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
+}

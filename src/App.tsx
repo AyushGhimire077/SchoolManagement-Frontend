@@ -1,6 +1,9 @@
+import Layout from "./pages/Landing/Layout"
 const App = () => {
   return (
-    <div>App</div>
+    <>
+      <Layout />
+    </>
   )
 }
 
