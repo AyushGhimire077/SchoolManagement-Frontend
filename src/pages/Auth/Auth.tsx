@@ -9,6 +9,7 @@ interface FormData {
   email: string;
   password: string;
   paymentKey: string;
+  plan: string;
 }
 
 const AuthPage = () => {
@@ -17,7 +18,8 @@ const AuthPage = () => {
     name: "",
     email: "",
     password: "",
-    paymentKey: ""
+    paymentKey: "",
+    plan: "",
   });
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -46,7 +48,8 @@ const AuthPage = () => {
 
   const { login, register } = useAuthStore();
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -56,7 +59,7 @@ const AuthPage = () => {
 
   const toggleMode = () => {
     setIsRegister(!isRegister);
-    setFormData({ name: "", paymentKey: "", email: "", password: "" });
+    setFormData({ name: "", paymentKey: "", email: "", password: "", plan: "" });
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -122,20 +125,50 @@ const AuthPage = () => {
         </motion.div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
+          {/* For register */}
           {isRegister && (
             <>
+              {/* company name */}
               <motion.div variants={itemVariants}>
-                <label className="text-sm font-medium text-gray-700 mb-1 block">Name</label>
+                <label className="text-sm font-medium text-gray-700 mb-1 block">Institude Name</label>
                 <input
                   type="text"
                   name="name"
                   required
-                  value={formData.name}
+                  value={formData?.name}
                   onChange={handleChange}
-                  placeholder="John Doe"
+                  placeholder="Enter institude name"
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#FF7EB3] focus:outline-none"
                 />
               </motion.div>
+              <motion.div variants={itemVariants}>
+                <label className="text-sm font-medium text-gray-700 mb-1 block">
+                  Plan
+                </label>
+                <select
+                  name="plan"
+                  value={formData.plan}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-800 bg-white focus:ring-2 focus:ring-[#FF7EB3] focus:outline-none transition duration-150 ease-in-out"
+                >
+                  <option value="" disabled className="text-gray-400">
+                    Select Plan
+                  </option>
+                  <option
+                    value="basic"
+                  >
+                    Basic
+                  </option>
+                  <option
+                    value="premium"
+                  >
+                    Premium
+                  </option>
+                </select>
+              </motion.div>
+
+
             </>
           )}
           <motion.div variants={itemVariants}>
@@ -211,7 +244,7 @@ const AuthPage = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="mt-6 text-sm text-center text-gray-600"
+            className="mt-6 text-center text-sm text-gray-600"
           >
             {isRegister ? (
               <>

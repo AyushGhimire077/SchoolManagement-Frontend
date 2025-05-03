@@ -9,6 +9,7 @@ export interface IRegister {
     email: string;
     password: string;
     paymentKey: string;
+    plan: string;
 }
 
 export interface IAuthStore {
