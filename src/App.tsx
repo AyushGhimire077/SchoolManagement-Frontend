@@ -1,8 +1,62 @@
 import Layout from "./pages/Landing/Layout"
+import { Route, Routes } from "react-router-dom"
+import Auth from "./pages/Auth/Auth"
+import { Toaster } from "react-hot-toast"
 const App = () => {
   return (
     <>
-      <Layout />
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          success: {
+            duration: 4000,
+            style: {
+              background: '#4CAF50',
+              color: 'white',
+              borderRadius: '8px',
+              padding: '12px 20px',
+              fontWeight: 'bold',
+              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+            },
+            iconTheme: {
+              primary: '#fff',
+              secondary: '#4CAF50',
+            },
+          },
+          error: {
+            duration: 4000,
+            style: {
+              background: '#F44336',
+              color: 'white',
+              borderRadius: '8px',
+              padding: '12px 20px',
+              fontWeight: 'bold',
+              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+            },
+            iconTheme: {
+              primary: '#fff',
+              secondary: '#F44336',
+            },
+          },
+          loading: {
+            duration: 4000,
+            style: {
+              background: '#2196F3',
+              color: 'white',
+              borderRadius: '8px',
+              padding: '12px 20px',
+              fontWeight: 'bold',
+              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+            },
+          },
+        }}
+      />
+
+      <Routes>
+        <Route path="/" element={<Layout />} />
+        <Route path="/auth/admin" element={<Auth />} />
+      </Routes>
+      
     </>
   )
 }
