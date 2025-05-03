@@ -1,8 +1,23 @@
-import Layout from "./pages/Landing/Layout"
+import Layout from "./pages/public/Landing/Layout"
 import { Route, Routes } from "react-router-dom"
-import Auth from "./pages/Auth/Auth"
+import Auth from "./pages/public/Auth/Auth"
 import { Toaster } from "react-hot-toast"
+import { useEffect } from "react"
+import { useAuthCheck } from "./store/auth/checkLoggedIn"
+import PrivateLayout from "./pages/private/layout/PrivateLayout"
+import { Dashboard } from "./pages/private/componets/Dashboard"
 const App = () => {
+
+  // check if user is logged in
+  const { checkLoggedIn, isLoggedIn } = useAuthCheck();
+  // call on component mount
+  useEffect(() => {
+    checkLoggedIn();
+  }, []);
+
+  //get role from local storage
+  // const role: string | null = localStorage.getItem("role");
+
   return (
     <>
       <Toaster
@@ -51,14 +66,21 @@ const App = () => {
           },
         }}
       />
-     
-      <Routes>
-        <Route path="/" element={<Layout />} />
-        <Route path="/auth/admin" element={<Auth />} />
-      </Routes>
-      
-    </>
-  )
-}
 
-export default App
+      <Routes>
+        {isLoggedIn ? (
+          <Route element={<PrivateLayout />}>
+            <Route path="/" element={<Dashboard />} />
+          </Route>
+        ) : (
+          <>
+            <Route path="/" element={<Layout />} />
+            <Route path="/auth/admin" element={<Auth />} />
+          </>
+        )}
+      </Routes>
+    </>
+  );
+};
+
+export default App;

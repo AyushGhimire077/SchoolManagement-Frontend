@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-    --font-sans: "Inter", "sans-serif";
-    --font-serif: "Merriweather", "serif";
-    --font-mono: "Fira Code", "monospace";
+    --font-sans: "Inter", sans-serif;
+    --font-serif: "Merriweather", serif;
+    --font-mono: "Fira Code", monospace;
+    --font-poppins: "Poppins", sans-serif;
 
     --color-primary: #232D3F;
     --color-secondary: #0F0F0F;

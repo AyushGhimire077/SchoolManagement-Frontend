@@ -55,4 +55,6 @@ export const useAuthStore = create<IAuthStore>(() => ({
             console.error(error);
         }
     },
+
+
 }));

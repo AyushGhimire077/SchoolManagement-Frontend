@@ -1,8 +1,9 @@
-import Navbar from "../../componets/LangingComp/navbar/Navbar";
-import Hero from "../../componets/LangingComp/hero/Hero";
-import Features from "../../componets/LangingComp/features/Features";
-import Contact from "../../componets/LangingComp/contact/Contact";
-import Pricing from "../../componets/LangingComp/Pricing/Pricing";
+import Contact from "../../../componets/public/LandingComp/contact/Contact"
+import Features from "../../../componets/public/LandingComp/features/Features"
+import Hero from "../../../componets/public/LandingComp/hero/Hero"
+import Navbar from "../../../componets/public/LandingComp/navbar/Navbar"
+import Pricing from "../../../componets/public/LandingComp/Pricing/Pricing"
+
 const Layout = () => {
     return (
         <div className="bg-gradient-to-br from-[#FFB6C1] via-white to-[#4A90E2]">

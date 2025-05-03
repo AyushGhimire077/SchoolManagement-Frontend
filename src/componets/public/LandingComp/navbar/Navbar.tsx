@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { motion, AnimatePresence } from 'framer-motion';
-import { logoVariants, listVariants, itemVariants, menuIconVariants, buttonVariants, mobileMenuVariants } from '../motion';
+import { logoVariants, listVariants, itemVariants, menuIconVariants, buttonVariants, mobileMenuVariants } from '../motion'
 import { useNavigate } from 'react-router-dom';
 const Navbar: React.FC = () => {
     const [mobileOpen, setMobileOpen] = useState<boolean>(false);
@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
     };
 
     // Navigate
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     return (
         <nav className="bg-* p-4 shadow-md  tracking-wider w-full">

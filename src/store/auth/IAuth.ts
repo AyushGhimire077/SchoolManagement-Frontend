@@ -16,3 +16,8 @@ export interface IAuthStore {
     login: (credentials: ILogin) => Promise<void>;
     register: (credentials: IRegister) => Promise<void>;
 }
+
+export interface ICheckLoggedIn {
+    checkLoggedIn: () => Promise<void>;
+    isLoggedIn: boolean;
+}

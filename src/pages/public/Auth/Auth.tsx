@@ -1,7 +1,7 @@
 import { ArrowLeftCircleIcon, ArrowRightIcon, ExclamationTriangleIcon, EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
-import { useAuthStore } from "../../store/auth/authStore";
+import { useAuthStore } from "../../../store/auth/authStore";
 
 // Define types for the form data and component state
 interface FormData {

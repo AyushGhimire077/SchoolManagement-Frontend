@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import heroImg from "../../../assets/heroImage.png";
-import { containerVariants, fadeUp, imageVariants } from "../motion";
+import heroImg from "../../../../assets/heroImage.png";
+import { containerVariants, fadeUp, imageVariants } from "../../LandingComp/motion";
 import { useNavigate } from "react-router-dom";
 const Hero: React.FC = () => {
 
