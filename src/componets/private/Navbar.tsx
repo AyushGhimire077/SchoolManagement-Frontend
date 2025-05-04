@@ -4,24 +4,29 @@ import {
     BellIcon,
     UserCircleIcon,
 } from "@heroicons/react/24/outline";
+import { useActiveItem } from "../../store/main/getActiveItem";
 
 const PrivateNavbar = () => {
+
+    // get the activce component
+    const { activeItem } = useActiveItem();
+
     return (
         <nav className="flex items-center justify-between px-6 py-4 bg-slate-50  shadow-2xs">
            
             <div aria-label="Breadcrumb">
-                <ol className="flex items-center space-x-2 text-gray-600">
+                <ol className="flex items-center space-x-1 text-gray-600">
                     <li className="flex items-center">
                         <span className="text-sm font-medium transition-colors hover:text-gray-900">
                             Application
                         </span>
                         <ChevronRightIcon
-                            className="mx-2 h-5 w-5 text-gray-400"
+                            className="mx-1 h-4 w-4 text-gray-400"
                             aria-hidden="true"
                         />
                     </li>
-                    <li className="text-sm font-medium text-gray-900" aria-current="page">
-                        Dashboard
+                    <li className="text-sm capitalize font-medium text-gray-900" aria-current="page">
+                         {activeItem}
                     </li>
                 </ol>
             </div>
