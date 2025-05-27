@@ -9,7 +9,7 @@ const Hero: React.FC = () => {
 
     return (
         <section id="home">
-            <div className="max-w-7xl w-[90%] mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24">
+            <div className="max-w-7xl w-[90%] mx-auto px-4 sm:px-6 lg:px-8 py-12 ">
                 <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20 min-h-[600px] relative overflow-hidden">
                     {/* Text Content */}
                     <motion.div
@@ -19,12 +19,12 @@ const Hero: React.FC = () => {
                         animate="visible"
                     >
                         <motion.h1
-                            className="text-3xl md:text-5xl lg:text-6xl font-bold text-secondary mb-6 leading-tight"
+                            className="text-3xl md:text-6xl font-bold text-secondary mb-6 leading-tight"
                             variants={fadeUp}
                         >
                             Manage your institute with ease.
                             <span className="text-pink-400/75 tracking-wider border-r-2 border-pink-400 type-writer block mt-4">
-                                SkoolPilot
+                                LuxoraEd
                             </span>
                             {" "}is here to help you.
                         </motion.h1>
@@ -33,20 +33,20 @@ const Hero: React.FC = () => {
                             className="text-base md:text-lg text-secondary mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed"
                             variants={fadeUp}
                         >
-                            SkoolPilot is a comprehensive school management system that simplifies
-                            administration tasks. Manage <span className='text-shadow-blue-950'>students, teachers, subjects, statistics,
-                                and more</span> with our intuitive platform.
+                            LuxoraEd is a comprehensive school management system that simplifies
+                            the process of managing your educational institution. LuxoraEd empowers educators 
+                            and administrators to efficiently manage their school operations.
                         </motion.p>
 
                         <motion.button
                             variants={fadeUp}
-                            onClick={() => navigate('/auth/admin')}
-                            className="bg-accent hover:bg-sky-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors duration-300 shadow-lg
-              hover:shadow-xl transform w-fit mx-auto md:mx-0"
-
+                            duration={0.6}
+                            onClick={() => navigate('/auth/register-school')}
+                            className="bg-[#3C366B] hover:bg-[#524790] text-white px-8 py-4 rounded-xl text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-xl w-fit mx-auto md:mx-0"
                         >
                             Get Started Now
                         </motion.button>
+
                     </motion.div>
 
                     {/* Image */}

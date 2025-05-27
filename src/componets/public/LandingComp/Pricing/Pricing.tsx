@@ -106,7 +106,7 @@ const Pricing: React.FC = () => {
                             </ul>
 
                             <motion.button
-                                onClick={() => navigate("/auth/admin")}
+                                onClick={() => navigate("/auth/register-school")}
                                 whileHover={{ y: -2 }}
                                 whileTap={{ scale: 0.98 }}
                                 type="button"

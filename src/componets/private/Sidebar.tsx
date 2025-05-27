@@ -12,7 +12,7 @@ import {
     ChevronRightIcon,
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import { useActiveItem } from "../../store/main/getActiveItem";
+// import { useActiveItem } from "../../store/main/getActiveItem";
 import { SidebarItem } from "./IPrivate";
 
 
@@ -22,9 +22,9 @@ const Sidebar: React.FC = () => {
     // const [activeItemId, setActiveItemId] = useState('dashboard');
 
     // From the store
-    const { activeItem, setActiveItem } = useActiveItem();
+    // const { activeItem, setActiveItem } = useActiveItem();
 
-    console.log(activeItem);
+    // console.log(activeItem);
 
     const sidebarItems: SidebarItem[] = [
         {
@@ -72,7 +72,7 @@ const Sidebar: React.FC = () => {
                                 }`}
                             onClick={() => {
                                 if (item.children) toggleExpansion(item.id);
-                                setActiveItem(item.id);
+                                // setActiveItem(item.id);
                             }}
                         >
                             {item.icon}
@@ -98,7 +98,7 @@ const Sidebar: React.FC = () => {
                                                 }`}
                                             onClick={(e) => {
                                                 e.stopPropagation();
-                                                setActiveItem(child.id);
+                                                // setActiveItem(child.id);
                                             }}
                                         >
                                             {child.icon}

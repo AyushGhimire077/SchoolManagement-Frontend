@@ -1,22 +1,20 @@
 import Layout from "./pages/public/Landing/Layout"
 import { Route, Routes } from "react-router-dom"
-import Auth from "./pages/public/Auth/Auth"
 import { Toaster } from "react-hot-toast"
 import { useEffect } from "react"
-import { useAuthCheck } from "./store/auth/checkLoggedIn"
 import PrivateLayout from "./pages/private/layout/PrivateLayout"
 import { Dashboard } from "./pages/private/componets/Dashboard"
+import RegisterSchool from "./pages/public/Auth/RegisterSchool"
+import { usePublicAuthStore } from "./pages/public/Auth/publicAuthStore"
 const App = () => {
 
   // check if user is logged in
-  const { checkLoggedIn, isLoggedIn } = useAuthCheck();
-  // call on component mount
+  const { userRole, checkLoggedIn } = usePublicAuthStore();
   useEffect(() => {
     checkLoggedIn();
-  }, []);
+  }, [checkLoggedIn]);
 
-  //get role from local storage
-  // const role: string | null = localStorage.getItem("role");
+
 
   return (
     <>
@@ -68,14 +66,14 @@ const App = () => {
       />
 
       <Routes>
-        {isLoggedIn ? (
+        {userRole === "ADMIN" ? (
           <Route element={<PrivateLayout />}>
             <Route path="/" element={<Dashboard />} />
           </Route>
         ) : (
           <>
             <Route path="/" element={<Layout />} />
-            <Route path="/auth/admin" element={<Auth />} />
+            <Route path="/auth/register-school" element={<RegisterSchool />} />
           </>
         )}
       </Routes>

@@ -44,8 +44,8 @@ const Navbar: React.FC = () => {
                         className="flex-shrink-0"
 
                     >
-                        <span className="text-[18px] sm:text-xl md:text-3xl font-bold text-gray-600 tracking-widest hover:text-gray-500 duration-300 cursor-pointer">
-                            SkoolPilot
+                        <span className="text-[22px] sm:text-3xl md:text-4xl font-serif font-semibold text-secondary tracking-wide hover:text-indigo-800/80 duration-300 cursor-pointer">
+                            LuxoraEd
                         </span>
                     </motion.div>
 
@@ -106,11 +106,11 @@ const Navbar: React.FC = () => {
 
                         <motion.button
                             custom={1}
-                            onClick={() => navigate('/auth/admin')}
+                            onClick={() => navigate('/auth/register-school')}
                             initial="hidden"
                             animate="visible"
                             variants={buttonVariants}
-                            className="text-gray-100 duration-300 hover:bg-sky-500 font-semibold bg-accent hover:text-gray-200 px-6 py-2.5 rounded-xl text-sm shadow-md"
+                            className="bg-[#3c366be3] hover:bg-[#524790] text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-xl w-fit mx-auto md:mx-0"
                         >
                             Try now
                         </motion.button>
