@@ -1,10 +1,11 @@
-export interface AuthState {
+export interface RegisterSchool {
     schoolName: string;
     schoolCode: string;
     schoolAddress: string;
     schoolPhone: string;
     schoolEmail: string;
     schoolPassword: string;
+    plan: string;
     isPaid: boolean;
 }
 
@@ -17,7 +18,7 @@ export interface LoginCredentials {
 export interface PublicAuthStore {
     userRole: string,
     userLogin: (loginCredentials: LoginCredentials) => Promise<unknown>;
-    registerSchool: (formData: AuthState) => Promise<unknown>;
+    registerSchool: (formData: RegisterSchool) => Promise<unknown>;
     checkLoggedIn: () => Promise<unknown>;
   
 }

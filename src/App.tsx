@@ -6,6 +6,7 @@ import PrivateLayout from "./pages/private/layout/PrivateLayout"
 import { Dashboard } from "./pages/private/componets/Dashboard"
 import RegisterSchool from "./pages/public/Auth/RegisterSchool"
 import { usePublicAuthStore } from "./pages/public/Auth/publicAuthStore"
+import Login from "./pages/public/Auth/Login"
 const App = () => {
 
   // check if user is logged in
@@ -73,7 +74,8 @@ const App = () => {
         ) : (
           <>
             <Route path="/" element={<Layout />} />
-            <Route path="/auth/register-school" element={<RegisterSchool />} />
+              <Route path="/auth/register-school" element={<RegisterSchool />} />
+              <Route path="/auth" element={<Login />} />
           </>
         )}
       </Routes>

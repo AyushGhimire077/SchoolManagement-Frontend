@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { axiosInstance } from "../../../global/axiosInstance";
-import { AuthState, LoginCredentials, PublicAuthStore } from "./IPublicAuth"
+import { RegisterSchool, LoginCredentials, PublicAuthStore } from "./IPublicAuth"
 
 export const usePublicAuthStore = create((set): PublicAuthStore => ({
 
@@ -19,7 +19,7 @@ export const usePublicAuthStore = create((set): PublicAuthStore => ({
         }
     },
 
-    registerSchool: async (formData: AuthState) => {
+    registerSchool: async (formData: RegisterSchool) => {
         try {
             const res = await axiosInstance.post(`/schools/register`, formData);
 

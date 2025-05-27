@@ -1,10 +1,10 @@
 import RegisterForm from "./components/RegisterForm"
-import RegisterNavbar from "./components/RegisterNavbar"
+import AuthNavbar from "./components/AuthNavbar"
 
 const RegisterSchool = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-indigo-50">
-      <RegisterNavbar />
+      <AuthNavbar />
       <div className="pt-6 pb-12">
         <RegisterForm />
       </div>
