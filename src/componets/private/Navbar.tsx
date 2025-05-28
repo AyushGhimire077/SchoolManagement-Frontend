@@ -4,11 +4,12 @@ import {
     BellIcon,
     UserCircleIcon,
 } from "@heroicons/react/24/outline";
+import { usePrivateStore } from "./store";
 
 const PrivateNavbar = () => {
 
     // get the activce component
-    // const { activeItem } = useActiveItem();
+    const { activeItem } = usePrivateStore();
 
     return (
         <nav className="flex items-center justify-between px-6 py-4 bg-slate-50  shadow-2xs">
@@ -24,8 +25,8 @@ const PrivateNavbar = () => {
                             aria-hidden="true"
                         />
                     </li>
-                    <li className="text-sm capitalize font-medium text-gray-900" aria-current="page">
-                         {/* {activeItem} */}
+                    <li className="text-sm capitalize font-medium text-gray-600" aria-current="page">
+                         {activeItem}
                     </li>
                 </ol>
             </div>
