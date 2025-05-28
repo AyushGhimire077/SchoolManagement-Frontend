@@ -19,12 +19,12 @@ import { SidebarItem } from "./IPrivate";
 
 const Sidebar: React.FC = () => {
     const [expandedItems, setExpandedItems] = useState<string[]>(['dashboard']);
-    // const [activeItemId, setActiveItemId] = useState('dashboard');
+    const [activeItemId, setActiveItemId] = useState('dashboard');
 
     // From the store
-    // const { activeItem, setActiveItem } = useActiveItem();
+    const { activeItem, setActiveItem } = useActiveItem();
 
-    // console.log(activeItem);
+    console.log(activeItem);
 
     const sidebarItems: SidebarItem[] = [
         {
@@ -72,7 +72,7 @@ const Sidebar: React.FC = () => {
                                 }`}
                             onClick={() => {
                                 if (item.children) toggleExpansion(item.id);
-                                // setActiveItem(item.id);
+                                setActiveItem(item.id);
                             }}
                         >
                             {item.icon}

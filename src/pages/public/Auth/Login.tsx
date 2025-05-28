@@ -1,34 +1,46 @@
+import { useEffect, useState } from "react";
 import AuthNavbar from "./components/AuthNavbar";
 import LoginForm from "./components/LoginFrom";
+import { usePublicAuthStore } from "./publicAuthStore";
+import AlterInfoPopup from "./components/AlterInfoPopup";
+import Contact from "../../../componets/public/LandingComp/contact/Contact";
 
 const Login = () => {
+    const { loginAttempts } = usePublicAuthStore();
+    const [infoPopup, setInfoPopup] = useState(false);
+
+    useEffect(() => {
+        if (loginAttempts >= 3) {
+            setInfoPopup(true);
+        }
+        console.log(loginAttempts);
+    }, [loginAttempts]);
+
     return (
         <div className="min-h-screen flex flex-col bg-gray-50">
             <AuthNavbar />
 
+            {infoPopup && (
+                <AlterInfoPopup setInfoPopup={setInfoPopup} infoPopup={infoPopup} />
+            )}
+
             <main className="flex-grow pt-8 pb-12 px-4">
                 <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10">
-                    {/* Left Image Section */}
-                    <div className="w-full lg:w-1/2">
+                    <div className="w-full hidden md:block lg:w-1/2">
                         <img
-                            src="https://plus.unsplash.com/premium_photo-1723619021737-df1d775eccc8?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bW90aXZhdGlvbmFsJTIwd2FsbHBhcGVyc3xlbnwwfHwwfHx8MA%3D%3D"
+                            src="https://plus.unsplash.com/premium_photo-1723619021737-df1d775eccc8?fm=jpg&q=60&w=3000"
                             alt="Motivational Wallpaper"
                             className="w-full rounded-lg shadow-md"
                         />
                     </div>
 
-                    {/* Right Login Form Section */}
                     <div className="w-full lg:w-1/2">
                         <LoginForm />
                     </div>
                 </div>
             </main>
 
-            <footer className="bg-white border-t py-4 shadow-inner">
-                <div className="text-center text-sm text-gray-500">
-                    © {new Date().getFullYear()} EduPlatform. All rights reserved.
-                </div>
-            </footer>
+               <Contact />
         </div>
     );
 };

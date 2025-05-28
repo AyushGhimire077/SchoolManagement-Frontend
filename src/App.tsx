@@ -15,52 +15,50 @@ const App = () => {
     checkLoggedIn();
   }, [checkLoggedIn]);
 
+  console.log("user role is", userRole);
+
 
 
   return (
     <>
       <Toaster
-        position="top-center"
+        position="bottom-right"
         toastOptions={{
+          style: {
+            borderRadius: "12px",
+            padding: "16px 24px",
+            fontWeight: 500,
+            fontSize: "15px",
+            fontFamily: "Inter, sans-serif",
+            boxShadow: "0 6px 18px rgba(0, 0, 0, 0.15)",
+          },
           success: {
             duration: 4000,
             style: {
-              background: '#4CAF50',
-              color: 'white',
-              borderRadius: '8px',
-              padding: '12px 20px',
-              fontWeight: 'bold',
-              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+              background: "#1DBF73",
+              color: "#fff",
             },
             iconTheme: {
-              primary: '#fff',
-              secondary: '#4CAF50',
+              primary: "#fff",
+              secondary: "#1DBF73",
             },
           },
           error: {
-            duration: 4000,
+            duration: 5000,
             style: {
-              background: '#F44336',
-              color: 'white',
-              borderRadius: '8px',
-              padding: '12px 20px',
-              fontWeight: 'bold',
-              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+              background: "#EF4444",
+              color: "#fff",
             },
             iconTheme: {
-              primary: '#fff',
-              secondary: '#F44336',
+              primary: "#fff",
+              secondary: "#EF4444",
             },
           },
           loading: {
-            duration: 4000,
+            duration: 5000,
             style: {
-              background: '#2196F3',
-              color: 'white',
-              borderRadius: '8px',
-              padding: '12px 20px',
-              fontWeight: 'bold',
-              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+              background: "#3B82F6",
+              color: "#fff",
             },
           },
         }}
