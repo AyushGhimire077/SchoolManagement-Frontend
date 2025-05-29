@@ -17,6 +17,7 @@ export interface LoginCredentials {
 
 export interface PublicAuthStore {
     userRole: string,
+    userToken: string
     loginAttempts: number
     userLogin: (loginCredentials: LoginCredentials) => Promise<unknown>;
     registerSchool: (formData: RegisterSchool) => Promise<unknown>;

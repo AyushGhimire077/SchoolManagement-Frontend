@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback, useMemo, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowRightOnRectangleIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { usePrivateStore } from "./store";
 import { SidebarItem } from "./IPrivate";
@@ -7,29 +8,35 @@ import { IconMapper } from "./IconMaper";
 const Sidebar: React.FC = () => {
     const [expandedItems, setExpandedItems] = useState<string[]>(["dashboard"]);
     const { activeItem, setActiveItem, getSidebarItems, sidebarItems } = usePrivateStore();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         if (!sidebarItems.length) getSidebarItems();
     }, [getSidebarItems, sidebarItems.length]);
 
     useEffect(() => {
+        // extra / remove
+        const currentPath = location.pathname.slice(1); 
         if (!activeItem && sidebarItems.length) {
-            setActiveItem("dashboard");
-            setExpandedItems((prev) => (prev.includes("dashboard") ? prev : [...prev, "dashboard"]));
+            const matchedItem = sidebarItems.find(item => item.id === currentPath) || sidebarItems[0];
+            setActiveItem(matchedItem.id);
+            setExpandedItems(prev => (prev.includes(matchedItem.id) ? prev : [...prev, matchedItem.id]));
         }
-    }, [activeItem, sidebarItems, setActiveItem]);
+    }, [activeItem, sidebarItems, location.pathname, setActiveItem]);
 
     const toggleExpansion = useCallback((itemId: string) => {
-        setExpandedItems((prev) =>
-            prev.includes(itemId) ? [] : [itemId]
-        );
+        setExpandedItems((prev) => prev.includes(itemId) ? [] : [itemId]);
     }, []);
-    
 
     const handleItemClick = useCallback((item: SidebarItem) => {
-        if (item.children) toggleExpansion(item.id);
-        setActiveItem(item.id);
-    }, [toggleExpansion, setActiveItem]);
+        if (item.children) {
+            toggleExpansion(item.id);
+        } else {
+            navigate(`/${item.id}`);
+            setActiveItem(item.id);
+        }
+    }, [toggleExpansion, setActiveItem, navigate]);
 
     const SidebarItemComponent = useCallback(({ item, depth = 0 }: { item: SidebarItem; depth?: number }) => {
         const isActive = activeItem === item.id;
@@ -39,8 +46,8 @@ const Sidebar: React.FC = () => {
         return (
             <li className="flex flex-col gap-1" role="treeitem" aria-expanded={isExpanded}>
                 <div
-                    className={`flex items-center gap-3 text-sm p-3 rounded-l-full cursor-pointer select-none transition-all duration-150 ${isActive ? "bg-sky-50 text-gray-900" : "text-slate-300 hover:bg-blue-900/50"
-                        }`}
+                    className={`flex items-center gap-3 text-sm p-3 rounded-l-full cursor-pointer select-none transition-all duration-150 
+                    ${isActive ? "bg-sky-50 text-gray-900" : "text-slate-300 hover:bg-blue-900/50"}`}
                     onClick={() => handleItemClick(item)}
                 >
                     {IconMapper[item.icon] ?? <div className="h-5 w-5" />}
@@ -57,12 +64,10 @@ const Sidebar: React.FC = () => {
                         <ul className="flex flex-col pl-5 gap-3 mt-2">
                             {item.children?.map((child) => (
                                 <SidebarItemComponent key={child.id} item={child} depth={depth + 1} />
-                            ))} 
+                            ))}
                         </ul>
                     </div>
                 )}
-
-
             </li>
         );
     }, [activeItem, expandedItems, handleItemClick]);
@@ -84,9 +89,10 @@ const Sidebar: React.FC = () => {
             <nav className="flex-grow overflow-auto custom-scroll">
                 {renderedItems}
             </nav>
+
             <div className="flex items-center gap-2 justify-start pb-3 pl-1.5">
                 <ArrowRightOnRectangleIcon className="w-8 h-8 text-slate-100 rounded-full p-1.5 shadow-md" />
-             <button>Logout out</button>
+                <button>Log out</button>
             </div>
         </aside>
     );

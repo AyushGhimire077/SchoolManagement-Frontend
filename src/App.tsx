@@ -3,10 +3,11 @@ import { Route, Routes } from "react-router-dom"
 import { Toaster } from "react-hot-toast"
 import { useEffect } from "react"
 import PrivateLayout from "./pages/private/layout/PrivateLayout"
-import { Dashboard } from "./pages/private/componets/Dashboard"
+import Overview1 from "./pages/private/componets/dashboard/Overview1"
 import RegisterSchool from "./pages/public/Auth/RegisterSchool"
 import { usePublicAuthStore } from "./pages/public/Auth/publicAuthStore"
 import Login from "./pages/public/Auth/Login"
+import TestRoute from "./pages/private/pages/testRoute"
 const App = () => {
 
   // check if user is logged in
@@ -66,17 +67,25 @@ const App = () => {
 
       <Routes>
         {userRole === "ADMIN" ? (
-          <Route element={<PrivateLayout />}>
-            <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<PrivateLayout />}>
+            {/* default */}
+            <Route index element={<Overview1 />} />
+            <Route path="overview1" element={<Overview1 />} />
+
+            {/* other routes */}
+            <Route path="overview2" element={<TestRoute />} />
+
           </Route>
         ) : (
-          <>
-            <Route path="/" element={<Layout />} />
-              <Route path="/auth/register-school" element={<RegisterSchool />} />
-              <Route path="/auth" element={<Login />} />
-          </>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Login />} />
+            <Route path="auth" element={<Login />} />
+            <Route path="auth/register-school" element={<RegisterSchool />} />
+          </Route>
         )}
       </Routes>
+
+
     </>
   );
 };

@@ -8,6 +8,8 @@ export const usePublicAuthStore = create((set, get): PublicAuthStore => ({
 
     // logged user role
     userRole: "",
+    userToken: "",
+    
     loginAttempts: 0,
 
     userLogin: async (loginCredentials: LoginCredentials) => {
@@ -64,6 +66,7 @@ export const usePublicAuthStore = create((set, get): PublicAuthStore => ({
     checkLoggedIn: async () => {
         const res = await axiosInstance.get(`/auth/check`);
         // set role
+        set({ userToken: res.data.token })
         set({ userRole: res.data.role })
         return res.data;
 
