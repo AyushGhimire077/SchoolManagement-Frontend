@@ -1,7 +1,7 @@
 import { axiosInstance } from './../../../global/axiosInstance';
 import { create } from "zustand";
 import toast from "react-hot-toast";
-import { handleApiError } from "../../../global/handleApiError";
+import { handleApiError } from "../../../utils/handleApiError";
 import { IOverView1 } from './interface';
 
 export const useOverview1Store = create((set): IOverView1 => ({

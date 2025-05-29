@@ -11,11 +11,15 @@ export interface LenBoxProps {
     len: number | undefined;
     icon: ReactNode;
     label: string;
-    rate?: string;
+    rate?: number;
 }
 export interface TotalLenInfo {
     totalStudents: number;
     totalTeachers: number;
     totalAdmins: number;
+
+    studentRateChange: number;
+    teacherRateChange: number;
+    adminRateChange: number;
 }
   

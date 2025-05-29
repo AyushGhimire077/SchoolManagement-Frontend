@@ -2,14 +2,14 @@ import { create } from "zustand";
 import { axiosInstance } from "../../../global/axiosInstance";
 import { RegisterSchool, LoginCredentials, PublicAuthStore } from "./IPublicAuth"
 import { toast } from "react-hot-toast";
-import { handleApiError } from "../../../global/handleApiError";
+import { handleApiError } from "../../../utils/handleApiError";
 
 export const usePublicAuthStore = create((set, get): PublicAuthStore => ({
 
     // logged user role
     userRole: "",
     userToken: "",
-    
+
     loginAttempts: 0,
 
     userLogin: async (loginCredentials: LoginCredentials) => {

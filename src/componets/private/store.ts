@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { axiosInstance } from "../../global/axiosInstance";
 import toast from "react-hot-toast";
-import { handleApiError } from "../../global/handleApiError";
+import { handleApiError } from "../../utils/handleApiError";
 import { PrivateStore } from "./IPrivate";
 
 export const usePrivateStore = create<PrivateStore>((set) => ({
@@ -20,5 +20,5 @@ export const usePrivateStore = create<PrivateStore>((set) => ({
 
     activeItem: "",
     setActiveItem: (itemId) => set({ activeItem: itemId }),
-    
+
 }));

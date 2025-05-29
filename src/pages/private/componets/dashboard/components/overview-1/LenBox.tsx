@@ -1,5 +1,5 @@
 import React from "react";
-import { LenBoxProps } from "../../interface";
+import { LenBoxProps } from "../../../interface";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 
 interface ExtendedLenBoxProps extends LenBoxProps {
@@ -13,8 +13,7 @@ const colorMap = {
 };
 
 const LenBox: React.FC<ExtendedLenBoxProps> = ({ len, icon, label, rate, color = "blue" }) => {
-    const isPositive = rate && !rate.startsWith("-");
-    const displayRate = rate?.replace("-", "") || "";
+    const isPositive = rate && rate > 0;
 
     return (
         <div className="relative w-full bg-white p-5 rounded-xl border shadow-lg border-gray-200 transition-all duration-300 
@@ -31,7 +30,7 @@ const LenBox: React.FC<ExtendedLenBoxProps> = ({ len, icon, label, rate, color =
                           ${isPositive
                             ? "bg-green-100 text-green-800"
                             : "bg-rose-100 text-rose-800"}`}>
-                        <span className="font-semibold">{displayRate}</span>
+                        <span className="font-semibold">{rate}</span>
                         {isPositive ? (
                             <ChevronUpIcon className="w-3.5 h-3.5" />
                         ) : (

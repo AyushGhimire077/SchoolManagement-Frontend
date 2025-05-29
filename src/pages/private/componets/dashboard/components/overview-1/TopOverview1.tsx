@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useOverview1Store } from "../store";
-import LenBox from "./components/LenBox";
+import { useOverview1Store } from "../../../store";
+import LenBox from "./LenBox";
 import { UserIcon, UsersIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
-import { LenBoxProps } from "../interface";
+import { LenBoxProps } from "../../../interface";
 
 const TopOverview1 = () => {
     const { totelLenInfo, getTotalLenInfo } = useOverview1Store();
@@ -17,21 +17,21 @@ const TopOverview1 = () => {
             label: "Students",
             len: totelLenInfo?.totalStudents,
             icon: <UsersIcon className="w-8 h-8" />,
-            rate: "10%",
+            rate: Math.round(totelLenInfo?.studentRateChange || 0),
             color: "blue",
         },
         {
             label: "Teachers",
             len: totelLenInfo?.totalTeachers,
             icon: <UserIcon className="w-8 h-8" />,
-            rate: "15%",
+            rate: Math.round(totelLenInfo?.teacherRateChange || 0),
             color: "orange",
         },
         {
             label: "Admins",
             len: totelLenInfo?.totalAdmins,
             icon: <ShieldCheckIcon className="w-8 h-8" />,
-            rate: "-5%",
+            rate: Math.round(totelLenInfo?.adminRateChange || 0),
             color: "yellow",
         },
     ];
