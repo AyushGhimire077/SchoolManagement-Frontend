@@ -3,11 +3,11 @@ import { Route, Routes } from "react-router-dom"
 import { Toaster } from "react-hot-toast"
 import { useEffect } from "react"
 import PrivateLayout from "./pages/private/layout/PrivateLayout"
-import Overview1 from "./pages/private/componets/dashboard/Overview1"
 import RegisterSchool from "./pages/public/Auth/RegisterSchool"
 import { usePublicAuthStore } from "./pages/public/Auth/publicAuthStore"
 import Login from "./pages/public/Auth/Login"
 import TestRoute from "./pages/private/pages/testRoute"
+import Overview from "./pages/private/pages/Overview"
 const App = () => {
 
   // check if user is logged in
@@ -69,8 +69,9 @@ const App = () => {
         {userRole === "ADMIN" ? (
           <Route path="/" element={<PrivateLayout />}>
             {/* default */}
-            <Route index element={<Overview1 />} />
-            <Route path="overview1" element={<Overview1 />} />
+            <Route index element={<Overview />} />
+            <Route path="overview1" element={<Overview />} />
+            
 
             {/* other routes */}
             <Route path="overview2" element={<TestRoute />} />

@@ -1,0 +1,56 @@
+import { useEffect } from "react";
+import { useOverview1Store } from "../store";
+import LenBox from "./components/LenBox";
+import { UserIcon, UsersIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
+import { LenBoxProps } from "../interface";
+
+const TopOverview1 = () => {
+    const { totelLenInfo, getTotalLenInfo } = useOverview1Store();
+
+    useEffect(() => {
+        if (!totelLenInfo) getTotalLenInfo();
+
+    }, [getTotalLenInfo, totelLenInfo]);
+
+    const mappedInfo: (LenBoxProps & { color: "blue" | "orange" | "yellow" })[] = [
+        {
+            label: "Students",
+            len: totelLenInfo?.totalStudents,
+            icon: <UsersIcon className="w-8 h-8" />,
+            rate: "10%",
+            color: "blue",
+        },
+        {
+            label: "Teachers",
+            len: totelLenInfo?.totalTeachers,
+            icon: <UserIcon className="w-8 h-8" />,
+            rate: "15%",
+            color: "orange",
+        },
+        {
+            label: "Admins",
+            len: totelLenInfo?.totalAdmins,
+            icon: <ShieldCheckIcon className="w-8 h-8" />,
+            rate: "-5%",
+            color: "yellow",
+        },
+    ];
+
+
+    return (
+        <div className="grid md:grid-cols-2 grid-cols-1 xl:grid-cols-3 gap-3">
+            {mappedInfo.map((item, idx) => (
+                <LenBox
+                    key={idx}
+                    len={item.len}
+                    icon={item.icon}
+                    label={item.label}
+                    rate={item.rate}
+                    color={item.color}
+                />
+            ))}
+        </div>
+    );
+};
+
+export default TopOverview1;
