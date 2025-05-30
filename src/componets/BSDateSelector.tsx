@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import BikramSambat from "bikram-sambat-js";
 import { convertBsToAdString } from "../utils/bsDateHelper";
 import { BSDateSelectorProps } from "./interface";
+import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 
 const BSDatePicker: React.FC<BSDateSelectorProps> = ({
     label,
@@ -12,8 +13,8 @@ const BSDatePicker: React.FC<BSDateSelectorProps> = ({
     const todayAd = new Date();
     const todayAdStr = `${todayAd.getFullYear()}-${String(todayAd.getMonth() + 1).padStart(2, "0")}-${String(todayAd.getDate()).padStart(2, "0")}`;
     const bsInstance = new BikramSambat(todayAdStr, "AD");
-    const todayBs = bsInstance.toBS(); 
-    
+    const todayBs = bsInstance.toBS();
+
 
     const initialDate = defaultValue || todayBs;
     const [year, setYear] = useState(() => +initialDate.split("-")[0]);
@@ -106,25 +107,31 @@ const BSDatePicker: React.FC<BSDateSelectorProps> = ({
     };
 
     return (
-        <div className="relative inline-block text-sm font-sans w-44" ref={pickerRef}>
-            {label && (
+        <div className="relative bg-white inline-block text-sm font-sans w-44" ref={pickerRef}>
+            {/* {label && (
                 <label
                     htmlFor="bs-date-input"
                     className="block mb-1 text-gray-700 text-xs font-semibold"
                 >
                     {label}
                 </label>
-            )}
-            <input
-                id="bs-date-input"
-                type="text"
-                readOnly
-                onClick={() => setOpen((v) => !v)}
-                value={formattedDate}
-                className="w-full cursor-pointer rounded border border-gray-300 px-2 py-1 text-sm text-gray-800 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                aria-haspopup="true"
-                aria-expanded={open}
-            />
+            )} */}
+            <div className="relative">
+                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500">
+                    <CalendarDaysIcon className="h-4 w-4" />
+                </span>
+                <input
+                    id="bs-date-input"
+                    type="text"
+                    readOnly
+                    onClick={() => setOpen((v) => !v)}
+                    value={formattedDate}
+                    className="w-full cursor-pointer rounded border border-gray-300 px-2 py-1 pl-8 text-sm text-secondary focus:outline-none focus:ring-1 focus:ring-indigo-400"
+                    aria-haspopup="true"
+                    aria-expanded={open}
+                />
+            </div>
+
             {open && (
                 <div
                     className="absolute top-full left-0 mt-1 w-56 bg-white border border-gray-300 rounded shadow-lg z-50 p-2 select-none"

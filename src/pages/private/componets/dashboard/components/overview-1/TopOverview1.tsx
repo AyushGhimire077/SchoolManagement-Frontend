@@ -1,16 +1,10 @@
-import { useEffect } from "react";
 import { useOverview1Store } from "../../../store";
 import LenBox from "./LenBox";
 import { UserIcon, UsersIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
 import { LenBoxProps } from "../../../interface";
 
 const TopOverview1 = () => {
-    const { totelLenInfo, getTotalLenInfo } = useOverview1Store();
-
-    useEffect(() => {
-        if (!totelLenInfo) getTotalLenInfo();
-
-    }, [getTotalLenInfo, totelLenInfo]);
+    const { totelLenInfo } = useOverview1Store();
 
     const mappedInfo: (LenBoxProps & { color: "blue" | "orange" | "yellow" })[] = [
         {

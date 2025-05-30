@@ -78,11 +78,12 @@ const App = () => {
 
           </Route>
         ) : (
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Login />} />
-            <Route path="auth" element={<Login />} />
-            <Route path="auth/register-school" element={<RegisterSchool />} />
-          </Route>
+            <>
+              <Route path="/" element={<Layout />} />
+              <Route path="/auth" element={<Login />} />
+              <Route path="/auth/register-school" element={<RegisterSchool />} />
+        
+        </>
         )}
       </Routes>
 
