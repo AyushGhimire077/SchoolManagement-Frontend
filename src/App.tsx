@@ -6,8 +6,9 @@ import PrivateLayout from "./pages/private/layout/PrivateLayout"
 import RegisterSchool from "./pages/public/Auth/RegisterSchool"
 import { usePublicAuthStore } from "./pages/public/Auth/publicAuthStore"
 import Login from "./pages/public/Auth/Login"
-import TestRoute from "./pages/private/pages/testRoute"
+import TestRoute from "./pages/private/pages/Student"
 import Overview from "./pages/private/pages/Overview"
+import Student from "./pages/private/pages/Student"
 const App = () => {
 
   // check if user is logged in
@@ -74,7 +75,8 @@ const App = () => {
             
 
             {/* other routes */}
-            <Route path="overview2" element={<TestRoute />} />
+            <Route path="students" element={<Student />} />
+
 
           </Route>
         ) : (
