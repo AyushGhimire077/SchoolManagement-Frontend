@@ -1,13 +1,6 @@
-export interface CrudStore{
-    registerStudents: (studentInfo: Student) => void;
-    registerClass: (classInfo: Class) => void;
-}
-
-// types/Student.ts
-
 export interface Payment {
     amount: number;
-    paymentDate: string; 
+    paymentDate: string;
     method?: string;
 }
 
@@ -28,5 +21,17 @@ export interface Student {
 export interface Class {
     classNumber: number;
     sectionName: string;
+}
+
+export interface CrudStore {
+    students: Student[];
+    currentPage: number;
+    totalPages: number;
+    totalItems: number;
+   
+    registerStudents: (studentInfo: Student) => Promise<void>;
+    registerClass: (classInfo: Class) => Promise<void>;
+    setCurrentPage: (page: number) => void;
+    fetchStudents: (page: number, size: number) => Promise<void>;
 }
   
