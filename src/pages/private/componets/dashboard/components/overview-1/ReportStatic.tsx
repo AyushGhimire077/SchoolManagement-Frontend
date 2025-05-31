@@ -1,15 +1,15 @@
-import { useOverview1Store } from "../../../store"
+// import { useOverview1Store } from "../../../store"
 
-const ReportStatic = () => {
+// const ReportStatic = () => {
 
-    const { getFeesStatics } = useOverview1Store();
+//     const { getFeesStatics } = useOverview1Store();
     
 
-    return (
-        <div>
+//     return (
+//         <div>
 
-        </div>
-    )
-}
+//         </div>
+//     )
+// }
 
-export default ReportStatic
+// export default ReportStatic

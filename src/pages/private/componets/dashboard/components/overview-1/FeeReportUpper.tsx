@@ -1,19 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BSDateSelector from "../../../../../../componets/BSDateSelector";
+import { useOverview1Store } from "../../../store";
 
 const FeeReportUpper = () => {
     const [, setBs] = useState("");
-    const [, setAd] = useState("");
+    const [ad, setAd] = useState("");
+
+    const { getFeesStatics, isReload } = useOverview1Store();
+
+    useEffect(() => {
+        getFeesStatics(ad);
+    }, [ad]);
 
     return (
         <div className="py-4 w-full mt-4 flex flex-col md:flex-row items-start md:items-center gap-4">
-            
-            <div className="w-full p-4 md:w-[56%] flex flex-col md:flex-row justify-between items-start md:items-center">
+
+            <div className="w-full p-4 md:w-[52%] flex flex-col md:flex-row justify-between items-start md:items-center">
                 <h2 className="text-lg font-semibold text-secondary whitespace-nowrap md:mr-2">
                     Fees Reports
                 </h2>
                 <div className="w-full md:w-auto mt-2 md:mt-0">
                     <BSDateSelector
+                        key={isReload ? "reload" : "normal"}
                         label="Select Date"
                         onChange={(bsDate, adDate) => {
                             setBs(bsDate);

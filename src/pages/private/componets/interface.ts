@@ -4,11 +4,11 @@ export interface IOverView1 {
 
     totelLenInfo?: TotalLenInfo,
     feeStatic?: FeeStatic
-    isReload ?: boolean
+    isReload?: boolean
 
 
     getTotalLenInfo: () => void
-    getFeesStatics: () => void
+    getFeesStatics: (startDate?: string) => Promise<void>;
     refreshData: () => void
 
 
@@ -38,3 +38,15 @@ export interface FeeStatic {
     averageFeesCollected: number
 }
 
+
+export interface FeeStaticItem {
+    month: string;
+    totalFeesCollected: number;
+    totalFeesPending: number;
+    averageFeesCollected?: number;
+}
+
+export interface ChartDataItem {
+    name: string;
+    value: number;
+}

@@ -5,7 +5,7 @@ import { BSDateSelectorProps } from "./interface";
 import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 
 const BSDatePicker: React.FC<BSDateSelectorProps> = ({
-    label,
+    // label,
     defaultValue,
     onChange,
 }) => {

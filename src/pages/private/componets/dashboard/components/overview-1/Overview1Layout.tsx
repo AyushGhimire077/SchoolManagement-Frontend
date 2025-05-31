@@ -3,23 +3,32 @@ import TopOverview1 from "./TopOverview1";
 import FeeReportUpper from "./FeeReportUpper";
 import { useOverview1Store } from "../../../store";
 import { useEffect } from "react";
+import FeeStatsChart from "../../../chats/FeesStaticChat";
+import FeesPieChat from "../../../chats/FeesPieChat";
+import ExpenseChat from "../../../chats/ExpenseChat";
 
 const Overview1Layout = () => {
     const { refreshData, isReload } = useOverview1Store();
 
-    useEffect(() => {
+    const handleReload = async () => {
         refreshData();
+    }
+
+    useEffect(() => {
+        handleReload();
     }, []);
 
+      
+
     return (
-        <div className="flex gap-6 px-6">
+        <div className="flex gap-6 px-2">
             {/* left side */}
-            <div className="w-[70%] border-t border-r border-t-slate-200 border-r-slate-300/60 pr-4 py-3">
+            <div className="w-[85%] border-t border-r border-t-slate-200 border-r-slate-300/60 pr-3 py-3">
                 {/* header part */}
                 <div className="flex items-center justify-between mb-4">
                     <h1 className="text-xl text-secondary font-bold">General Report</h1>
                     <button
-                        onClick={refreshData}
+                        onClick={handleReload}
                         disabled={isReload}
                         className="text-sm flex justify-center items-center text-secondary hover:text-secondary-dark transition disabled:opacity-60"
                     >
@@ -36,6 +45,11 @@ const Overview1Layout = () => {
                 </div>
                 <div>
                     <FeeReportUpper />
+                    <div className="flex justify-between ">
+                        <FeeStatsChart />
+                        <FeesPieChat />
+                        <ExpenseChat />
+                    </div>
                 </div>
             </div>
 
