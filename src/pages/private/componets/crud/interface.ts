@@ -1,3 +1,5 @@
+import { Key } from "react";
+
 export interface Payment {
     amount: number;
     paymentDate: string;
@@ -5,6 +7,11 @@ export interface Payment {
 }
 
 export interface Student {
+    id: Key | null | undefined;
+    feePaid: boolean;
+    sectionName: number;
+    classNumber: string;
+  
     username: string;
     password: string;
     phone: string;

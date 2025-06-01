@@ -37,15 +37,15 @@ export const useCrudStore = create<CrudStore>((set) => ({
     setCurrentPage: (page: number) => set({ currentPage: page }),
 
     fetchStudents: async (page: number, size: number) => {
+        console.log(page, size)
         try {
             const res = await axiosInstance.get(`/mixin/fetch/students?page=${page}&size=${size}`);
 
             if (res?.data) {
                 set({
                     students: res.data.content,
-                    currentPage: res.data.number,      
                     totalPages: res.data.totalPages,
-                    totalItems: res.data.totalElements, 
+                    totalItems: res.data.totalElements,
                 });
             } else {
                 toast.error("No data returned");
