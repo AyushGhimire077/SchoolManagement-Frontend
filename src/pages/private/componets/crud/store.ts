@@ -55,4 +55,6 @@ export const useCrudStore = create<CrudStore>((set) => ({
             toast.error("Failed to fetch students");
         }
     },
+
+  
 }));

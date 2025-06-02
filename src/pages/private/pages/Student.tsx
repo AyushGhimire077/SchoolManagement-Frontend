@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GetStudents from "../componets/crud/GetStudents";
+import { useOverview1Store } from "../componets/store";
+import { useCrudStore } from "../componets/crud/store";
+import { useNavigate } from "react-router-dom";
 
 const Student = () => {
   const [activeTab, setActiveTab] = useState("students");
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [showFilterMenu, setShowFilterMenu] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const { totelLenInfo, refreshData } = useOverview1Store();
+  const { students } = useCrudStore();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    refreshData();
+  }, [refreshData]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -33,55 +43,14 @@ const Student = () => {
             </div>
 
             <div className="relative">
-              <button
-                className="flex items-center space-x-1 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition"
-                onClick={() => setShowFilterMenu(!showFilterMenu)}
-              >
-                <svg className="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                </svg>
-                <span className="text-white font-medium">Filters</span>
+              <button className="flex items-center space-x-1 hover:bg-blue-600/80 bg-blue-500 px-4 py-1.5 rounded-lg transition">
+                <span
+                  onClick={() => navigate("student-more")}
+                  className="text-white font-medium"
+                >
+                  View more
+                </span>
               </button>
-
-              {showFilterMenu && (
-                <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg py-2 z-10">
-                  <div className="px-4 py-2 border-b">
-                    <h3 className="text-sm font-medium text-gray-900">Filter Options</h3>
-                  </div>
-                  <div className="px-4 py-3 space-y-3">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                      <select className="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                        <option>All Students</option>
-                        <option>Active</option>
-                        <option>Inactive</option>
-                        <option>Graduated</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Class</label>
-                      <select className="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                        <option>All Classes</option>
-                        <option>Class A</option>
-                        <option>Class B</option>
-                        <option>Class C</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Enrollment Date</label>
-                      <input type="date" className="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-                    </div>
-                  </div>
-                  <div className="px-4 py-3 bg-gray-50 rounded-b-lg flex justify-end space-x-3">
-                    <button className="px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition">
-                      Reset
-                    </button>
-                    <button className="px-3 py-1.5 text-sm text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition">
-                      Apply
-                    </button>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>
@@ -94,30 +63,13 @@ const Student = () => {
           <div className="border-b border-gray-200">
             <div className="flex">
               <button
-                className={`px-6 py-4 font-medium text-sm relative ${activeTab === 'students' ? 'text-indigo-600' : 'text-gray-500 hover:text-gray-700'}`}
-                onClick={() => setActiveTab('students')}
+                className={`px-6 py-4 font-medium text-sm relative ${activeTab === "students" ? "text-indigo-600" : "text-gray-500 hover:text-gray-700"
+                  }`}
+                onClick={() => setActiveTab("students")}
               >
                 Students
-                {activeTab === 'students' && (
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-indigo-600 rounded-t-lg"></div>
-                )}
-              </button>
-              <button
-                className={`px-6 py-4 font-medium text-sm relative ${activeTab === 'classes' ? 'text-indigo-600' : 'text-gray-500 hover:text-gray-700'}`}
-                onClick={() => setActiveTab('classes')}
-              >
-                Classes
-                {activeTab === 'classes' && (
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-indigo-600 rounded-t-lg"></div>
-                )}
-              </button>
-              <button
-                className={`px-6 py-4 font-medium text-sm relative ${activeTab === 'reports' ? 'text-indigo-600' : 'text-gray-500 hover:text-gray-700'}`}
-                onClick={() => setActiveTab('reports')}
-              >
-                Reports
-                {activeTab === 'reports' && (
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-indigo-600 rounded-t-lg"></div>
+                {activeTab === "students" && (
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-accent rounded-t-lg"></div>
                 )}
               </button>
             </div>
@@ -132,8 +84,8 @@ const Student = () => {
 
             <div className="flex flex-wrap gap-3">
               <button
-                onClick={() => setShowAddModal(true)}
-                className="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-lg shadow transition duration-300"
+                onClick={() => navigate("add-student")}
+                className="flex items-center space-x-2 bg-secondary hover:bg-indigo-800 text-white px-4 py-2.5 rounded-lg shadow transition duration-300"
               >
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -148,7 +100,10 @@ const Student = () => {
                 <span className="font-medium">Export Data</span>
               </button>
 
-              <button className="flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-lg shadow transition duration-300">
+              <button
+                onClick={() => navigate("add-class")}
+                className="flex items-center space-x-2 bg-pink-400 hover:bg-pink-500 text-white px-4 py-2.5 rounded-lg shadow transition duration-300"
+              >
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                 </svg>
@@ -158,7 +113,7 @@ const Student = () => {
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-6 py-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 py-5">
             <div className="bg-indigo-50 rounded-xl p-5 border border-indigo-100">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-medium text-indigo-800">Total Students</h3>
@@ -168,8 +123,8 @@ const Student = () => {
                   </svg>
                 </div>
               </div>
-              <p className="text-2xl font-bold text-gray-900 mt-2">1,248</p>
-              <p className="text-xs text-indigo-600 mt-1">+12% from last month</p>
+              <p className="text-2xl font-bold text-gray-900 mt-2">{totelLenInfo?.totalStudents}</p>
+              <p className="text-xs text-indigo-600 mt-1">{totelLenInfo?.studentRateChange} rate of {totelLenInfo?.totalStudents}</p>
             </div>
 
             <div className="bg-emerald-50 rounded-xl p-5 border border-emerald-100">
@@ -181,8 +136,14 @@ const Student = () => {
                   </svg>
                 </div>
               </div>
-              <p className="text-2xl font-bold text-gray-900 mt-2">24</p>
-              <p className="text-xs text-emerald-600 mt-1">+2 new classes</p>
+              <p className="text-2xl font-bold text-gray-900 mt-2">
+                {students?.isActiveClass?.length || 0}
+              </p>
+
+              <p className="text-xs text-emerald-600 mt-1">
+                <span className="font-semibold">{students?.filter(student => !student?.isActiveClass)?.length || 0}</span> Inactive
+              </p>
+
             </div>
 
             <div className="bg-amber-50 rounded-xl p-5 border border-amber-100">
@@ -194,114 +155,22 @@ const Student = () => {
                   </svg>
                 </div>
               </div>
-              <p className="text-2xl font-bold text-gray-900 mt-2">18</p>
+              <p className="text-2xl font-bold text-gray-900 mt-2">
+                {students?.filter(student => student.feePaid)?.length || 0}
+              </p>
               <p className="text-xs text-amber-600 mt-1">Review required</p>
             </div>
 
-            <div className="bg-rose-50 rounded-xl p-5 border border-rose-100">
-              <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium text-rose-800">Attendance Rate</h3>
-                <div className="bg-rose-100 p-2 rounded-lg">
-                  <svg className="h-5 w-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-              </div>
-              <p className="text-2xl font-bold text-gray-900 mt-2">94.5%</p>
-              <p className="text-xs text-rose-600 mt-1">+3.2% improvement</p>
-            </div>
+
           </div>
 
-          {/* Student List */}
-          <div className="p-6">
-            <GetStudents />
-          </div>
+          {/* Students Table */}
+          <GetStudents
+            searchTerm={searchTerm}
+            data={students}
+          />
         </div>
       </main>
-
-      {/* Add Student Modal */}
-      {showAddModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden">
-            <div className="bg-indigo-600 p-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-white">Add New Student</h2>
-                <button
-                  className="text-indigo-200 hover:text-white"
-                  onClick={() => setShowAddModal(false)}
-                >
-                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-              <p className="text-indigo-200 mt-1">Fill in the student details below</p>
-            </div>
-
-            <div className="p-6">
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                  <input
-                    type="text"
-                    className="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                    placeholder="John Smith"
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                    <input
-                      type="email"
-                      className="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                      placeholder="john@example.com"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                    <input
-                      type="tel"
-                      className="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                      placeholder="(555) 123-4567"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Class</label>
-                  <select className="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                    <option>Select a class</option>
-                    <option>Class A - Mathematics</option>
-                    <option>Class B - Science</option>
-                    <option>Class C - Literature</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Enrollment Date</label>
-                  <input
-                    type="date"
-                    className="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                  />
-                </div>
-              </div>
-
-              <div className="mt-8 flex justify-end space-x-3">
-                <button
-                  className="px-4 py-2.5 text-gray-700 font-medium hover:bg-gray-50 rounded-lg transition"
-                  onClick={() => setShowAddModal(false)}
-                >
-                  Cancel
-                </button>
-                <button className="px-4 py-2.5 bg-indigo-600 text-white font-medium hover:bg-indigo-700 rounded-lg shadow transition">
-                  Add Student
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

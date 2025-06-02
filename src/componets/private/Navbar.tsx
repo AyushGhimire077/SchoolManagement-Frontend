@@ -13,12 +13,12 @@ const PrivateNavbar = () => {
 
     return (
         <nav className="flex items-center justify-between px-6 py-4 bg-slate-50  shadow-2xs">
-           
+
             <div aria-label="Breadcrumb">
                 <ol className="flex items-center space-x-1 text-gray-600">
                     <li className="flex items-center">
                         <span className="text-sm font-medium transition-colors hover:text-gray-900">
-                        Application
+                            Application
                         </span>
                         <ChevronRightIcon
                             className="mx-1 h-4 w-4 text-gray-400"
@@ -26,7 +26,7 @@ const PrivateNavbar = () => {
                         />
                     </li>
                     <li className="text-sm capitalize font-medium text-gray-600" aria-current="page">
-                         {activeItem}
+                        {activeItem}
                     </li>
                 </ol>
             </div>
@@ -39,12 +39,16 @@ const PrivateNavbar = () => {
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                         </div>
-                        <input
-                            id="global-search"
-                            type="text"
-                            placeholder="Search..."
-                            className="block w-full pl-10 pr-4 py-2 border border-transparent bg-slate-100 outline-none rounded-full text-sm placeholder-gray-400 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
-                        />
+                        {
+                            activeItem == "" || activeItem == "overview1" && (
+                                <input
+                                    id="global-search"
+                                    type="text"
+                                    placeholder="Search..."
+                                    className="block w-full pl-10 pr-4 py-2 border border-transparent bg-slate-100 outline-none rounded-full text-sm placeholder-gray-400 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                                />
+                            )
+                        }
                     </div>
                 </div>
 

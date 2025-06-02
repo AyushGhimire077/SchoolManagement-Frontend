@@ -11,7 +11,9 @@ export interface Student {
     feePaid: boolean;
     sectionName: number;
     classNumber: string;
-  
+
+    isActiveClass: boolean;
+    
     username: string;
     password: string;
     phone: string;
@@ -35,6 +37,7 @@ export interface CrudStore {
     currentPage: number;
     totalPages: number;
     totalItems: number;
+
    
     registerStudents: (studentInfo: Student) => Promise<void>;
     registerClass: (classInfo: Class) => Promise<void>;
