@@ -9,6 +9,7 @@ import Login from "./pages/public/Auth/Login"
 import TestRoute from "./pages/private/pages/Student"
 import Overview from "./pages/private/pages/Overview"
 import Student from "./pages/private/pages/Student"
+import StudentForm from "./pages/private/componets/crud/StudentForm"
 const App = () => {
 
   // check if user is logged in
@@ -76,6 +77,7 @@ const App = () => {
 
             {/* other routes */}
             <Route path="students" element={<Student />} />
+            <Route path="students/add-student" element={<StudentForm />} />
 
 
           </Route>

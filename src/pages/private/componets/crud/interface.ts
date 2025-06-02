@@ -7,25 +7,25 @@ export interface Payment {
 }
 
 export interface Student {
-    id: Key | null | undefined;
-    feePaid: boolean;
-    sectionName: number;
-    classNumber: string;
+    id?: Key | null;
+    feePaid?: boolean;
+    sectionName?: number;
+    classNumber?: string;
 
-    isActiveClass: boolean;
-    
-    username: string;
-    password: string;
-    phone: string;
-    rollNumber: string;
-    parentName: string;
-    parentPhone: string;
-    lastPaidDate: string;
-    classroomId: number;
-    fees: number;
-    paid: boolean;
-    payments: Payment[];
-}
+    isActiveClass?: boolean;
+
+    username?: string;
+    password?: string;
+    phone?: string;
+    rollNumber?: string;
+    parentName?: string;
+    parentPhone?: string;
+    lastPaidDate?: string;
+    classroomId?: number;
+    fees?: number;
+    paid?: boolean;
+    payments?: Payment[];
+  }
 
 export interface Class {
     classNumber: number;
@@ -43,5 +43,11 @@ export interface CrudStore {
     registerClass: (classInfo: Class) => Promise<void>;
     setCurrentPage: (page: number) => void;
     fetchStudents: (page: number, size: number) => Promise<void>;
+    searchStudents: (searchQuery: string) => Promise<void>;
 }
   
+
+export interface GetStudentsProps {
+    searchTerm: string;
+    data: any[];
+  }

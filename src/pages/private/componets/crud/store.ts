@@ -56,5 +56,15 @@ export const useCrudStore = create<CrudStore>((set) => ({
         }
     },
 
+    searchStudents: async (searchQuery: string) => {
+        try {
+            const res = await axiosInstance.get(`/mixin/search-student?key=${encodeURIComponent(searchQuery)}`);
+            console.log(res.data)
+            set({ students: res.data.content });
+        } catch (error) {
+            console.error(error);
+        }
+    },
+
   
 }));
